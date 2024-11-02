@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scarily Clans</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Menyembunyikan scrollbar horizontal */
+            height: auto; /* Menyesuaikan tinggi dengan konten */
+            position: relative;
+        }
+
+        /* Background animasi ungu, hitam, abu-abu, dan putih */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #6a0dad, #000000, #cccccc, #6a0dad, #ffffff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite; /* Animasi perubahan gradien */
+            z-index: -1;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 0% 50%; }
+            75% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background-color: rgba(68, 68, 68, 0.9);
+            padding: 15px; /* Padding lebih kecil untuk header */
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 28px; /* Ukuran font logo lebih kecil */
+            font-weight: bold;
+            color: #ccc;
+            animation: glow 1s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff; }
+            100% { text-shadow: 0 0 30px #ff00ff, 0 0 40px #ff00ff; }
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 5px; /* Jarak antar menu lebih kecil */
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px; /* Ukuran padding menu lebih kecil */
+            transition: background 0.3s;
+            border-radius: 5px; /* Border radius menu */
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 0, 255, 0.7); /* Warna saat hover */
+        }
+
+        section {
+            padding: 15px; /* Padding lebih kecil untuk section */
+            border-bottom: 1px solid #444;
+            background-color: transparent; /* Set background to transparent */
+            margin: 20px auto; /* Mengatur margin secara otomatis agar berada di tengah */
+            border-radius: 8px;
+            max-width: 95%; /* Lebar maksimum untuk menjaga tampilan */
+        }
+
+        h2 {
+            font-size: 24px; /* Ukuran font untuk heading lebih kecil */
+            margin-bottom: 10px; /* Jarak bawah heading */
+        }
+
+        p {
+            font-size: 14px; /* Ukuran font untuk paragraf lebih kecil */
+            line-height: 1.5; /* Jarak antar baris */
+        }
+
+        .role-list {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .role {
+            background-color: rgba(255, 0, 0, 0.3); /* Background untuk Leaders */
+            margin: 10px 0; /* Jarak antar role */
+            padding: 10px; /* Padding untuk role */
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .member-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .member {
+            background-color: #555;
+            margin: 5px; /* Jarak antar anggota lebih kecil */
+            padding: 15px; /* Padding lebih kecil untuk anggota */
+            border-radius: 5px;
+            text-align: center;
+            width: 120px; /* Lebar kotak anggota lebih kecil */
+            font-size: 14px; /* Ukuran font untuk anggota lebih kecil */
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .gallery img {
+            width: 150px; /* Atur lebar gambar */
+            height: auto; /* Jaga proporsi gambar */
+            margin: 5px; /* Jarak antar gambar */
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px; /* Padding lebih kecil untuk footer */
+            background-color: rgba(68, 68, 68, 0.9);
+            position: relative;
+            width: 100%;
+            font-size: 14px; /* Ukuran font footer lebih kecil */
+        }
+
+        .discord-links {
+            text-align: center;
+            margin: 15px 0; /* Jarak vertikal lebih kecil */
+        }
+
+        .discord-links a {
+            color: #ff00ff;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 8px; /* Padding lebih kecil untuk tautan Discord */
+            border: 2px solid #ff00ff;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-size: 14px; /* Ukuran font untuk tautan Discord lebih kecil */
+        }
+
+        .discord-links a:hover {
+            background-color: rgba(255, 0, 255, 0.7);
+        }
+
+        /* Formulir */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form input, form textarea {
+            margin: 5px; /* Jarak antar input lebih kecil */
+            padding: 8px; /* Ukuran padding untuk input lebih kecil */
+            width: 90%;
+            max-width: 300px; /* Membatasi lebar maksimum input */
+            border: none;
+            border-radius: 5px;
+            font-size: 14px; /* Ukuran font untuk input lebih kecil */
+        }
+
+        form button {
+            padding: 8px; /* Padding lebih kecil untuk tombol */
+            background-color: #ff00ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 14px; /* Ukuran font untuk tombol lebih kecil */
+        }
+
+        form button:hover {
+            background-color: #d800d8;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    
+    <header>
+        <div class="logo">Scarily Clans</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#leaders">Leaders</a></li>
+                <li><a href="#admins">Admins</a></li>
+                <li><a href="#members">Members</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#discord">Discord</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Welcome to Scarily Clans</h2>
+        <p>Tempat berkumpul para penggemar Minecraft untuk berbagi pengalaman dan membangun komunitas yang solid!</p>
+    </section>
+
+    <section id="about">
+        <h2>About Scarily Clans</h2>
+        <p>Scarily Clans adalah komunitas untuk para pemain Minecraft yang ingin bergabung dan berkolaborasi dalam permainan. Visi kami adalah menciptakan lingkungan yang ramah dan mendukung bagi semua anggota.</p>
+    </section>
+
+    <section id="leaders">
+        <h2>Leaders</h2>
+        <div class="role-list">
+            <div class="role">MohFahmiMc</div>
+            <div class="role">Razooors32</div>
+        </div>
+    </section>
+
+    <section id="admins">
+        <h2>Admins</h2>
+        <div class="role-list">
+            <div class="role">Urehhcokaa</div>
+            <div class="role">Farhancrafting</div>
+            <div class="role">Dnzzror</div>
+        </div>
+    </section>
+
+    <section id="members">
+        <h2>Members</h2>
+        <div class="member-list">
+            <div class="member">ForcedCraft</div>
+            <div class="member">Nisa7258</div>
+            <div class="member">ZALCID</div>
+            <div class="member">Alief_akbar2357</div>
+            <div class="member">SYAFAAT27</div>
+            <div class="member">XpiscesX2939</div>
+            <div class="member">RonaldoMc07</div>
+            <div class="member">BlueOG01</div>
+            <div class="member">Zaavalz</div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <p>Berikut adalah beberapa gambar dari aktivitas kami:</p>
+        <div class="gallery">
+            <img src="https://example.com/minecraft1.jpg" alt="Minecraft Image 1">
+            <img src="https://example.com/minecraft2.jpg" alt="Minecraft Image 2">
+            <img src="https://example.com/minecraft3.jpg" alt="Minecraft Image 3">
+            <img src="https://example.com/minecraft4.jpg" alt="Minecraft Image 4">
+        </div>
+    </section>
+
+    <section id="discord">
+        <h2>Join Us on Discord</h2>
+        <div class="discord-links">
+            <p><a href="https://discord.com/channels/834255474949619753/1065613106765647942/1266993848417124533">Discord Scarily</a></p>
+            <p><a href="https://discord.gg/ydNCpBRH">Prownetwork Discord</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Scarily Clans. Semua hak dilindungi.</p>
+    </footer>
+</body>
+</html>
